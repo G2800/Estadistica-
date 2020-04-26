@@ -1,0 +1,43 @@
+```{r}
+library(htmltab) 
+
+linkCIA_urb = "https://www.cia.gov/library/publications/resources/the-world-factbook/fields/349.html"
+linkPath_urb='//*[@id="fieldListing"]'
+
+urban = htmltab(doc = linkCIA_urb, 
+                which =linkPath_urb)
+```
+```{r}
+head(urban)
+```
+```{r}
+urban[1,2]
+```
+```{r}
+library(stringr)
+
+# me trae cada numero
+str_extract_all('25.3%,0% y 23.5% 13 34 hola',"\\d")
+# me trae numeros adyacentes:
+str_extract_all('25.3%,0% y 23.5% 13 34 hola',"\\d+") # + es al menos 1 / * es 0 o más
+# numero entero, seguido opcionalmente de punto y mas numero de una o mas cifras.
+str_extract_all('25.3%,0% y 23.5% 13 34 hola',"\\d+\\.*\\d*")
+# numero entero, seguido opcionalmente de punto y mas numero de una o mas cifras y %.
+str_extract_all('25.3%,0% y 23.5% 13 34 hola', "\\d+\\.*\\d*\\%")
+# porcentaje sin el simbolo
+
+#  \\-
+    
+str_extract_all('25.3%,0% y 23.5% 13 34 hola', "(\\d+\\.*\\d*)(?=\\%)") 
+###arterisco significa en caso existiera
+###el simbolo + significa que tiene que haber 
+```
+```{r}
+str_extract_all('25.3%,0% y -23.5% 13 34 hola', "(\\d+\\.*\\d*)(?=\\%)")
+```
+```{r}
+porcentajes=c('13%','33%','55%')
+gsub('%',"",porcentajes) # lo reemplaza por nada ''.
+gsub('%',"",porcentajes)
+```
+
